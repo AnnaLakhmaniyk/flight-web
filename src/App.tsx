@@ -1,8 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
 import Navigation from "./components/Navigation"
-import AirportDetailPage from "./pages/AirportDetailPage"
-import AuthPage from "./pages/AuthPage"
+
+import FavoritePage from "./pages/FavoritePage"
 import MainPage from "./pages/MainPage"
 
 function App() {
@@ -11,8 +11,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/airport/:id" element={<AirportDetailPage />} />
+        <Route path="/favorite" element={<FavoritePage />} />
       </Routes>
     </>
   )
