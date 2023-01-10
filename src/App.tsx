@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation"
 
 import FavoritePage from "./pages/FavoritePage"
 import MainPage from "./pages/MainPage"
+import ProductPage from "./pages/ProductPage"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path={"/product/:id"} element={<ProductPage />} />
         <Route path="/favorite" element={<FavoritePage />} />
       </Routes>
     </>
