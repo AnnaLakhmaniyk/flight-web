@@ -1,9 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit"
 
-import { usersReducer } from "./slices/airportSlise"
+import { setupListeners } from "@reduxjs/toolkit/dist/query"
+
+import { productsApi } from "./products/productsApi"
 
 export const store = configureStore({
   reducer: {
-    airport: usersReducer,
+    [productsApi.reducerPath]: productsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(productsApi.middleware),
 })
+setupListeners(store.dispatch)
+
+export type RootState = ReturnType<typeof store.getState>
