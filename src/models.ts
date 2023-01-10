@@ -1,9 +1,12 @@
-export interface IAirport {
+export interface IProduct {
   id: number
-  name: string
-  ident: string
-  local_code: string
-  region: string
-  type: string
-  country: string
+  title: string
+  price: number
+  description: string
+  category: string
+  image: string
+  rating: {
+    rate: number
+    count: number
+  }
 }
