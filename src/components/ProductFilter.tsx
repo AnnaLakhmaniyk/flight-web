@@ -1,17 +1,25 @@
+import axios from "axios"
 import React, { ChangeEvent, useState, MouseEvent, useEffect } from "react"
-import {
-  useFetchCategoriQuery,
-  useFetchCategoriElQuery,
-} from "../store/products/productsApi"
+import { useFetchCategoriElQuery } from "../store/products/productsApi"
 
 export default function ProductFilter() {
   const [filter, setFilter] = useState(" ")
-  const { isLoading, data } = useFetchCategoriQuery(" ")
+  const [categori, setCategori] = useState([])
 
-  const { data: categori } = useFetchCategoriElQuery(filter)
-  console.log(categori)
+  const { data } = useFetchCategoriElQuery(filter)
+  console.log(data)
 
-  if (isLoading) return <p className="text-center">Loding...</p>
+  // if (isLoading) return <p className="text-center">Loding...</p>
+  useEffect(() => {
+    fetchCategori()
+  }, [])
+
+  async function fetchCategori() {
+    const response = await axios.get(
+      "https://fakestoreapi.com/products/categories"
+    )
+    setCategori(response.data)
+  }
 
   const changeHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     setFilter(event.target.value)
@@ -33,7 +41,7 @@ export default function ProductFilter() {
         <option disabled className="text-gray-500" value="">
           Type
         </option>
-        {data?.map((d) => (
+        {categori?.map((d) => (
           <option key={d} className="text-gray-500">
             {d}
           </option>
