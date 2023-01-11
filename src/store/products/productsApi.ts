@@ -12,12 +12,6 @@ export const productsApi = createApi({
       }),
     }),
 
-    fetchCategori: build.query<string[], string>({
-      query: () => ({
-        url: "products/categories",
-      }),
-    }),
-
     fetchCategoriEl: build.query<IProduct[], string>({
       query: (categori: string) => ({
         url: `/products/category/${categori}`,
@@ -26,8 +20,4 @@ export const productsApi = createApi({
   }),
 })
 
-export const {
-  useFetchProductQuery,
-  useFetchCategoriQuery,
-  useFetchCategoriElQuery,
-} = productsApi
+export const { useFetchProductQuery, useFetchCategoriElQuery } = productsApi
